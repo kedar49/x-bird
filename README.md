@@ -3,7 +3,7 @@
   
   # X-Bird 🐦
   
-  **A Chrome extension that generates AI-powered replies for Twitter/X posts using Hugging Face's language models.**
+  **A Chrome extension that generates AI-powered replies for Twitter/X posts using LLM.**
   
   [![Portfolio](https://img.shields.io/badge/Portfolio-wtfkedar.vercel.app-blue?style=for-the-badge&logo=vercel)](https://wtfkedar.vercel.app)
   [![GitHub](https://img.shields.io/badge/GitHub-kedar49-black?style=for-the-badge&logo=github)](https://github.com/kedar49)
