@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
+
+      * {
+        transition: all 0.3s ease-in-out;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --background: 0 0% 6%;
+        --foreground: 0 0% 98%;
+        --muted: 0 0% 15%;
+        --muted-foreground: 0 0% 64%;
+        --accent: 217 91% 60%;
+        --accent-hover: 217 91% 65%;
+        --border: 0 0% 20%;
+        --input: 0 0% 12%;
+        --card: 0 0% 8%;
+        --success: 142 76% 36%;
+        --destructive: 0 84% 60%;
+        --radius: 8px;
+      }
+
+      body {
+        font-family: "Geist", sans-serif;
+        background: hsl(var(--background));
+        margin: 0;
+        min-width: 360px;
+        min-height: 200px;
+        animation: 0.3s fadeIn ease-in-out;
+      }
+
+      .config-content {
+        background: hsl(var(--card));
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        border: 1px solid hsl(var(--border));
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .config-header {
+        font-family: "Geist", sans-serif;
+        font-size: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: hsl(var(--foreground));
+        font-weight: 600;
+        gap: 0.75rem;
+      }
+
+      .config-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: hsl(var(--foreground));
+        margin: 0;
+      }
+
+      .api-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: hsl(var(--input));
+        -webkit-text-security: disc;
+        border: 1px solid hsl(var(--border));
+        border-radius: var(--radius);
+        color: hsl(var(--foreground));
+        font-family: "Geist Mono";
+        font-size: 14px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease;
+      }
+
+      .api-input:focus {
+        outline: none;
+        border-color: hsl(var(--accent));
+        box-shadow: 0 0 0 2px hsl(var(--accent) / 0.2);
+      }
+
+      .api-input::placeholder {
+        color: hsl(var(--muted-foreground));
+      }
+
+      .status-message {
+        font-family: "Geist";
+        font-size: 14px;
+        color: hsl(var(--muted-foreground));
+        text-align: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        padding: 0.5rem;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+      }
+
+      .status-message.success {
+        color: hsl(var(--success));
+        background: hsl(var(--success) / 0.1);
+        border: 1px solid hsl(var(--success) / 0.2);
+        opacity: 1;
+      }
+
+      .status-message.error {
+        color: hsl(var(--destructive));
+        background: hsl(var(--destructive) / 0.1);
+        border: 1px solid hsl(var(--destructive) / 0.2);
+        opacity: 1;
+      }
+
+      .info-card {
+        background: hsl(var(--muted));
+        border: 1px solid hsl(var(--border));
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-bottom: 1rem;
+        font-family: "Geist";
+        font-size: 14px;
+        color: hsl(var(--muted-foreground));
+        line-height: 1.5;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: hsl(var(--accent));
+        color: hsl(var(--foreground));
+        text-decoration: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius);
+        font-family: "Geist";
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .cta-button:hover {
+        background: hsl(var(--accent-hover));
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px hsl(var(--accent) / 0.4);
+      }
+
+      .cta-button:active {
+        transform: translateY(0);
+      }
+
+      .dev-links {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        justify-content: center;
+      }
+
+      .dev-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        background: hsl(var(--muted));
+        color: hsl(var(--muted-foreground));
+        text-decoration: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius);
+        font-family: "Geist";
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.2s ease;
+        border: 1px solid hsl(var(--border));
+        flex: 1;
+      }
+
+      .dev-button:hover {
+        background: hsl(var(--accent));
+        color: hsl(var(--foreground));
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px hsl(var(--accent) / 0.3);
+      }
+
+      .dev-button:active {
+        transform: translateY(0);
+      }
+
+      .dev-button svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+      }
+
+      .config-header img {
+        width: 120px;
+        height: 120px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        border: 2px solid hsl(var(--border));
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="config-content">
+      <div class="config-header">
+        <img
+          src="X-bird.png"
+          alt="X-Bird Logo"
+        />
+        <h1 class="config-title">X-Bird</h1>
+      </div>
+
+      <div class="info-card">
+        Your API key will be stored locally in the browser storage. It will not
+        be sent to any servers.
+      </div>
+      
+      <a href="https://huggingface.co/settings/tokens" target="_blank" class="cta-button">
+        Get your Hugging Face API Key
+      </a>
+
+      <input
+        type="text"
+        class="api-input"
+                    placeholder="Hugging Face API Key (Enter to save)"
+        id="api-key-input"
+      />
+
+      <div class="status-message" id="status"></div>
+
+      <div class="dev-links">
+        <a href="https://github.com/kedar49" target="_blank" class="dev-button">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://wtfkedar.vercel.app" target="_blank" class="dev-button">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          Portfolio
+        </a>
+      </div>
+
+      <script src="popup.js"></script>
+    </div>
+  </body>
+</html>

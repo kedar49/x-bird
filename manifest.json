@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "X-Bird",
+  "version": "1.1.0",
+  "description": "Your Reply Guy IDEALIZER with enhanced security and performance.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "X-Bird - Reply Generator",
+    "default_icon": {
+      "16": "X-bird.png",
+      "24": "X-bird.png",
+      "32": "X-bird.png"
+    }
+  },
+  "permissions": [
+    "scripting", 
+    "tabs", 
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": ["*://x.com/*", "*://twitter.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*", "*://twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://api-inference.huggingface.co;"
+  },
+  "icons": {
+    "16": "X-bird.png",
+    "32": "X-bird.png", 
+    "48": "X-bird.png",
+    "128": "X-bird.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["X-bird.png"],
+      "matches": ["*://x.com/*", "*://twitter.com/*"]
+  }
+  ]
+}

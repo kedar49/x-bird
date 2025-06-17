@@ -1,0 +1,24 @@
+# Chrome Extension Files to Ignore
+*.pem
+*.crx
+*.zip
+
+# Development Files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log*
+
+# Temporary files
+temp/
+tmp/ 
